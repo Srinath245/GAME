@@ -1,0 +1,430 @@
+/*
+I'M SRINATH
+          I HAVE CREATED THIS PROJECT USEING BASIC CORE JAVA CONCEPT
+
+          I HAVE USED HESR  ONE SUB CLASS AND MAIN CLASS
+
+          SUB CLASS NAME IS ----> GAMENAME :
+          MAIN CLASS NAME IS ----> GAME
+
+          I HAVE USE BASIC CONCPT HEAR
+                          .. DATA TYPE   ---> JUST CHAR AND INT DATA TYPE :
+                          .. ONE MAIN CLASS AND ONE SUB CLASS :
+                          .. ARRAY METHOD
+                                    --->  NESTED IF ELSE AND NESTED FOR LOOP :
+                           .. THEN SEVEN METHOD I HAVE USED :
+
+
+
+                           THIS PROPUSE OF THE GAME
+
+                           THE PERSON IS LOGICALLY IS CAPBELE TO SOLV SOME PROBLEMS :
+
+ */
+
+
+
+// HEADER FILES :
+import javax.swing.*;
+import java.util.Random;
+import java.util.Scanner;
+//import java.util.Scanner;
+
+// I HAVE CREATED CLASS HEAR GAMENAME :
+class gamename
+{
+    // HEAR I HAVE DECLARE A VARIBLE :
+
+    // CHARCTER AND INTEGER :
+    static char [][] store;
+    int i,j;
+
+    char first_value = 'x',second_value = 'o';
+    char x_o;
+
+
+    // THIS IS CONSTRUCTOR  & IT NAME MUST BE THE CLASS NAME :
+    //IT IS UES TO STORE A DEFAULT OF GIVEN  GIVE INPUT :
+    //IT USES FOR WHEN THE USER DID'D NOT GIVE ANY VALUES IT CALL CONSTRUCTOR WITH A DEFAULT VALUES :
+
+    // USEING THIS CONSTORCTOR I HAVE GIVE SOME VALUES :
+    gamename()
+    {
+        // HEAR I HAVE DECLARE DEFAULT VALUES OF CHARACTOR 3 X 3 ROWS AND COLOUM :
+        store = new char[3][3];
+        loopofgame();
+        gameloopdisplayed();
+    }
+
+    // HEAR I HAVE CREATED ONE METHOD WITH NAME OF LOOP OF GAME :
+    // IT IS USE TO STORE A VALUES IN 3 X 3 MATRICE
+    void loopofgame()
+    {
+        // HEAR I HAVE RUN i VALUE FOR ROWS
+        for( i=0;i< store.length;i++)
+        {
+            // HEAR I HAVE RUN j VALUE FOR A COLOUM
+            for( j=0;j< store[i].length;j++)                   //<---- OUTPUT OF THIS LOOP      //  0  0  0
+            {                                                                                   //  0  0  0
+                store[i][j] = ' ';   //<--- THIS O IS DEFAULT STORE ALL i AND j VALUES          //  0  0  0
+            }
+        }
+    }
+
+    // HEAR I HAVE CREATED ONE METHOD WITH NAME OF GAME LOOP DISPLAY  :
+    /*
+         THIS METHOD I UESD TO DISPLAY
+         THE GAME OF BOX :
+     */
+    static void gameloopdisplayed()
+    {
+        System.out.println("---------------");                   //<---- OUTPUT OF THIS LOOP
+        for( int i =0;i< store.length;i++)                                           // -----------------------------
+        {                                                                        //    O  |     O |     O |
+            //    O  |     O |     O |
+            for( int j=0;j< store[i].length;j++)                                     //    O  |     O |     O |
+            {                                                                    // -----------------------------
+                System.out.print(store[i][j]  + " | ");
+            }
+            System.out.println(" ");
+            System.out.println("---------------");
+        }
+    }
+
+
+    /* THIS METHOD I UEED HEAR TO ASSAIN THE HOW MANY ROWS AND COLOUMS WANT'S TO USE
+       AND I HAVE DECLARE CONDITION ALSO
+
+       THEN MAIN POINT I HAVE DECLARE AND ASSAIN VALUES IN PARAMETERS
+
+       INTEGER      ---   ROW ;
+       INTEGER      ---   COLOUM;
+       CHARACTER    ---   X_O;
+     */
+
+     static void mark_a_x(int row,int coloum , char x_o)
+    {
+       // values = new char[1];
+        //values[0] = 'x';
+        //values[1] = 'o';
+
+
+        if(row>=0 && row<=2 && coloum>=0 && coloum <=2)
+
+            store[row][coloum] = x_o ;
+        else
+            System.out.println("invalide number");
+    }
+
+
+
+    /*
+
+                   --------> THIS METHOD IS CAN  WORK BUT WANT'S TO DEBUG
+                   --------> INSTED OF THIS METHOD I HAVE USED FUNCTION(  ROW , COLOUM , RIGHT , LEFT );
+
+
+boolean win_condition_()
+{
+
+         if((store[0][0] != ' ' && store[1][1] != ' ' && store[2][2] != ' ')&& store[0][0] == store[1][1] && store[1][1] == store[2][2] )
+        {
+            return true;
+        } else if ((store[0][0] != ' ' && store[1][0] != ' ' && store[2][0] != ' ') && store[0][0] == store[1][0] && store[1][0] == store[2][0]) {
+            return true;
+        } else if ((store[0][0] != ' ' && store[1][0] != ' ' && store[2][0] != ' ') && store[0][2] == store[1][1] && store[1][1] == store[2][0]) {
+            return true;
+        }
+         //else if (store[0][0] == store[0][1] && store[0][1] == store[0][2]) {
+          //  return true;
+       // } else if (store[1][0] == store[1][1] && store[1][1] == store[1][2]) {
+         //   return true;
+       // } else if (store[2][0] == store[2][1] && store[2][1] == store[2][2]) {
+         //  return true;
+       // }
+
+
+    return false;
+}
+
+     */
+
+    /*
+                           ------------> THIS WIN_ROW FUNCTION
+                                           I HAVE USE TO CHECH THE ROWS
+                                             BY INCRIEMENT THE J VALUE
+     */
+   static boolean win_row()
+    {
+        for(int j= 0;j<=2;j++)
+        {
+            if( store[0][j] != ' ' && store[0][j] == store[1][j] && store[1][j] == store[2][j])
+                return true;
+        }
+        return false;
+    }
+
+    /*
+                           ------------> THIS WIN_COLOUM FUNCTION
+                                           I HAVE USE TO CHECH THE COLOUM
+                                             BY INCRIEMENT THE I VALUE
+     */
+   static boolean win_coloum()
+    {
+        for(int i=0 ;i<=2;i++)
+        {
+            if(  store[i][0] != ' ' && store[i][0] == store[i][1] && store[i][1] == store[i][2])
+                return true;
+        }
+        return false;
+    }
+
+
+    /*
+                           ------------> THIS LEFT  FUNCTION
+                                           I HAVE USE TO CHECH THE LRFT TO RIGH
+                                            IF ANY WIN CONDITION
+
+     */
+   static boolean left_function()
+    {
+        if(store[0][0] != ' ' && store[0][0] == store[1][1] && store[1][1] == store[2][2]){
+            System.out.println("jhuihg ");
+            return true;
+        }
+       // else
+            return false;
+    }
+
+
+    /*
+                          ------------> THIS LEFT  FUNCTION
+                                           I HAVE USE TO CHECH THE RIGHT TO LEFT
+                                            IF ANY WIN CONDITION
+     */
+   static boolean right_function()
+    {
+        if(store[0][2] != ' ' && (store[0][2] != ' ' && store[0][2] == store[1][1] && store[1][1] == store[2][0]))
+            return true;
+        else
+            return false;
+    }
+
+    static boolean draw()
+    {
+        for(int i=0;i<=2;i++)
+        {
+            for(int j =0;j<=2;j++)
+            {
+                if(store[i][j] == ' ')
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    // EXTRE PART TO ADD :
+
+
+    /*
+         void mark_a_x(int row,int coloum , char[] values)
+    {
+        values = new char[1];
+        values[0] = 'x';
+        values[1] = 'o';
+
+
+        if(row>=0 && row<=2 && coloum>=0 && coloum <=2)
+
+            store[row][coloum] = values[1] ;
+        else
+            System.out.println("invalide number");
+    }
+
+     */
+
+}
+
+// HEAR THE GAMENAME CLASS IS OVER :
+abstract class player
+{
+    String name;
+    char mark;
+
+     abstract void player_move();
+
+    boolean valide_move(int row,int coloum)
+    {
+        if(row>=0 && row<=2 && coloum>=0 && coloum<=2 )
+        {
+            if(gamename.store[row][coloum] == ' ')
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+
+class Human_player extends player
+{
+
+
+
+    Human_player(String name, char mark)
+    {
+        this.name= name;
+        this.mark=mark;
+    }
+
+    void player_move()
+    {
+        Scanner sc = new Scanner(System.in);
+        int row,col;
+        do {
+            System.out.println("ENTER THE ROW AND COLOUM : ");
+            row = sc.nextInt();
+            col = sc.nextInt();
+        }while (!valide_move(row,col));
+
+        gamename.mark_a_x(row,col,mark);
+    }
+
+
+}
+class aiplayer extends player
+{
+
+
+    aiplayer(String name, char mark)
+    {
+        this.name= name;
+        this.mark=mark;
+    }
+
+    void player_move()
+    {
+        Scanner sc = new Scanner(System.in);
+        int row,col;
+        do {
+            Random r = new Random();
+           row = r.nextInt(3);
+           col =r.nextInt(3);
+        }while (!valide_move(row,col));
+
+        gamename.mark_a_x(row,col,mark);
+    }
+
+
+}
+
+
+/*
+           --> THIS IS A MAIN CLASS <---
+ */
+
+class game {
+    public static void main(String[] args) {
+
+        // HEAR I HAVE CREATED CLASS AND OBJECT
+
+        // ----> GAME NAME IS A CLASS NAME AND OB IS A OBJECT OF CLASS
+        // NEW IS A KEY WORD IT ALLOCATE A MEMORY
+        gamename ob = new gamename();
+        /*
+        ob.mark_a_x(0,2,'x');
+        ob.gameloopdisplayed();
+        ob.mark_a_x(1,1,'x');
+        ob.gameloopdisplayed();
+        ob.mark_a_x(2,0,'x');
+        ob.gameloopdisplayed();
+        System.out.println(ob.win_condition());
+
+         */
+
+
+        /*
+            DOWN HEAR YOU CAN PLAY THIS GAME
+             APPLYING THE VALUES OF ROWS :  AND COLOUM :
+         */
+        /*
+        ob.mark_a_x(0,2,'x');
+        ob.gameloopdisplayed();
+        ob.mark_a_x(1,2,'x');
+        ob.gameloopdisplayed();
+        ob.mark_a_x(2,2,'x');
+        ob.gameloopdisplayed();
+
+         */
+
+              /*
+
+              HEAR THE DOWN YOU CAN NOTICES EAITHER YOU WIN OR LOSS :
+               */
+/*
+        System.out.println("YOU HAVA WIN IN COLOUM DIRECTION :   "+ob.win_row());
+        System.out.println("YOU HAVA WIN IN ROW DIRECTION :   "+ob.win_coloum());
+        System.out.println("YOU HAVA WIN LEFT TO RIGHT DIRECTION :   "+ ob.left_function());
+        System.out.println("YOU HAVA WIN RIGHT TO LEFT DIRECTION :   " +ob.right_function());
+
+
+ */
+        /*
+         ONE SIMPLE TASK CAN YOU PROVE ABOVE FOUR CONDITION IS ALL TRUE :
+                  JUST SIMPLE LOGIC JUST SIMPLE
+                           -------- BUT IT'S POSIBLE :
+
+
+        ob.mark_a_x(0,2,'x');
+        ob.gameloopdisplayed();
+        ob.mark_a_x(1,2,'x');
+        ob.gameloopdisplayed();
+        ob.mark_a_x(2,2,'x');
+        ob.gameloopdisplayed();
+
+        ONLY THIS SIX LINE CAN REWRITE :
+
+                           EVEN THIS TASK I DID'T TRY
+
+
+
+
+         */
+
+      Human_player p1  = new Human_player("playe 1  ",'X');
+      aiplayer p2  = new aiplayer(" nooo  ",'O');
+
+      player cp;
+      cp = p1;
+
+      while (true)
+      {
+          System.out.println(cp.name + " TURN ");
+          cp.player_move();
+          gamename.gameloopdisplayed();
+          if(gamename.win_coloum() || gamename.win_row() || gamename.left_function() || gamename.right_function())
+          {
+              System.out.println(cp.name + " HAS WON !");
+              break;
+          } else if (gamename.draw())
+          {
+             System.out.println("GAME IS A DRAW !");
+             break;
+          } else
+          {
+              if(cp == p1)
+              {
+                  cp = p2;
+              }
+              else
+              {
+                  cp = p1;
+              }
+          }
+      }
+    }
+}
+
